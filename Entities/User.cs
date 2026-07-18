@@ -8,10 +8,44 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public class User
     {
-        public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public int Id { get; private set; }
+        private string _fullName;
+        private string _email;
+        private string _phoneNumber;
+        public string FullName 
+        {
+          get { return _fullName; }
+          set {
+                if (value.Length < 10 || value.Length > 50)
+                    throw new Exception("Please write your full name between 10 and 50 characters.");
+                else
+                    _fullName = value;
+          }
+        }
+        public string Email {
+            get { return _email; }
+            set {
+                if (!value.Contains("@") || !value.Contains("."))
+                    throw new Exception("Enter a valid Email. ");
+                _email = value;
+            } 
+        }
+        public string PhoneNumber {
+            get => _phoneNumber;
+            set {if (value.Length != 11)
+                    throw new Exception("please enter a valid Phone Number.");
+            _phoneNumber = value;
+                    }
+        }
+
+        private static int _identity = 1; 
+
+        public void RegisterUserProfile(string fullName , string email ,string phoneNumber) {
+            Id = _identity++;
+            FullName = fullName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+        }
 
     }
 }

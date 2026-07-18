@@ -14,6 +14,10 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
             //u2.RegisterUserProfile("Youssef Nasrat Ahmed ", "youssef@gmail.com" , "01222222222");
             //Console.WriteLine($"ID : {u2.Id} , FullName: {u2.FullName} , Email: {u2.Email} , Phone: {u2.PhoneNumber}");
             #endregion
+
+            
         }
+
+
     }
 }

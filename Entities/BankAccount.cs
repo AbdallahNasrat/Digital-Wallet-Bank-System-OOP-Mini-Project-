@@ -8,11 +8,24 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public abstract class BankAccount
     {
-        public long AccountNumber { get; set; }
+        protected BankAccount(string ownerId)
+        {
+            AccountNumber = GetUniqueAccountNumber();
+            OwnerId = ownerId;
+
+        }
+        public string AccountNumber { get; init; }
         public double Balance { get; private set; }
-        public int OwnerId { get; set; }
+        public string OwnerId { get; init; }
 
         public List<Transaction> MyTransactions { get; set; }
+
+        private string GetUniqueAccountNumber() {
+            string datePart = DateTime.UtcNow.ToString("yyMMdd");
+            string randomPart = Random.Shared.Next(1000, 9999).ToString();
+            return datePart + randomPart;
+
+        }
 
 
     }

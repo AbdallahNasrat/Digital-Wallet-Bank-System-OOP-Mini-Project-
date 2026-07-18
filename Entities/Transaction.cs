@@ -9,11 +9,26 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public class Transaction
     {
-        public int Id { get; private set; }
-        private static int _identity;
-        public int Amount { get; set; }
+        public Transaction( double amount , DateTime date , TransactionType type)
+        {
+            Id = GetUniqueId();
+            Amount = amount;
+            Date = date;
+            Type = type;
+                
+        }
+        public string Id { get; private set; }
+        public double Amount { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public TransactionType Type { get; set; }
-        
+
+        private string GetUniqueId()
+        {
+            string datePart = DateTime.UtcNow.ToString("yyMMdd");
+            string randomPart = Random.Shared.Next(1000, 9999).ToString();
+            return datePart + randomPart;
+
+        }
+
     }
 }

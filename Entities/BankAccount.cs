@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Wallet___Bank_System_OOP_Mini_Project__.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         {
             AccountNumber = GetUniqueAccountNumber();
             OwnerId = ownerId;
+            MyTransactions = new List<Transaction>();
 
         }
         public string AccountNumber { get; init; }
@@ -26,6 +28,19 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             return datePart + randomPart;
 
         }
+
+        public bool Deposit(double value) {
+            if (value <= 0)
+                throw new Exception("Please Enter value greater than 0 ");
+            Balance += value;
+            Transaction transaction = new Transaction(amount: value
+                ,date: DateTime.UtcNow, type: TransactionType.deposit);
+                
+            return true;
+        }
+
+        public abstract bool Withdraw(double value);
+        
 
 
     }

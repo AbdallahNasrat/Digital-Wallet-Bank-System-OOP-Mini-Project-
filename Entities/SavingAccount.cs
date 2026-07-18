@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
-    internal class SavingAccount
+    public class SavingAccount : BankAccount
     {
+        public SavingAccount(string ownerId) : base(ownerId)
+        {
+        }
+
+        public override bool Withdraw(double value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

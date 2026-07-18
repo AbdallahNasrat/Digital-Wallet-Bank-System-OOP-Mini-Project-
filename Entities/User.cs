@@ -8,6 +8,13 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public class User
     {
+        public User(string fullName, string email, string phoneNumber)
+        {
+            Id = _identity++;
+            FullName = fullName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+        }
         public int Id { get; private set; }
         private string _fullName;
         private string _email;
@@ -40,6 +47,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 
         private static int _identity = 1; 
 
+        //check
         public void RegisterUserProfile(string fullName , string email ,string phoneNumber) {
             Id = _identity++;
             FullName = fullName;

@@ -17,7 +17,13 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 
         }
         public string AccountNumber { get; init; }
-        public double Balance { get; private set; }
+        private double _balance;
+        public double Balance {
+            get => _balance;
+            set => _balance  = value;
+                
+            } 
+        
         public string OwnerId { get; init; }
 
         public List<Transaction> MyTransactions { get; set; }

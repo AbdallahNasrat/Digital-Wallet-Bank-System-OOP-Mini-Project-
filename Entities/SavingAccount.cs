@@ -14,7 +14,17 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 
         public override bool Withdraw(double value)
         {
-            throw new NotImplementedException();
+            int fee = 5;
+            if (value <= 0)
+                throw new Exception("Enter value greater than 0");
+
+            if (Balance >= value + fee)
+            {
+                Balance -= value + fee;
+                return true;
+
+            }
+            return false;  
         }
     }
 }

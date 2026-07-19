@@ -20,7 +20,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         private double _balance;
         public double Balance {
             get => _balance;
-            set => _balance  = value;
+            private set => _balance  = value;
                 
             } 
         

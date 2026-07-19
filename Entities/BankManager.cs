@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
-    internal class BankManager
+    public class BankManager
     {
+        public List<BankAccount> Accounts { get; private set; }
+        public BankManager() {
+            Accounts = new List<BankAccount>();
+        }
+
+        public BankAccount GetAccount(string id) {
+            foreach (BankAccount acc in Accounts) {
+                if (acc.AccountNumber == id) {
+                    return acc;
+                }
+            }
+            return null;
+        }
+
     }
 }

@@ -9,7 +9,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public abstract class BankAccount
     {
-        protected BankAccount(string ownerId)
+        protected BankAccount(string ownerId )
         {
             AccountNumber = GetUniqueAccountNumber();
             OwnerId = ownerId;
@@ -20,7 +20,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         private double _balance;
         public double Balance {
             get => _balance;
-            private set => _balance  = value;
+            set => _balance  = value;
                 
             } 
         
@@ -47,6 +47,12 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         }
 
         public abstract bool Withdraw(double value);
+
+        public double GetBalance() {
+            return Balance;
+        }
+
+        
         
 
 

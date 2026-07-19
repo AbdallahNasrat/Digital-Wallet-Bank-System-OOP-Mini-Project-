@@ -31,17 +31,38 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
             //Checking Account
 
-            User u2 = new User("ahmed khaled", "ahmed@gmail.com", "01226414024");
-            BankAccount ac2 = new CheckingAccount(u2.Id.ToString());
-            Console.WriteLine("balance : " + ac2.Balance);
-            ac2.Deposit(1000);
-            Console.WriteLine("balance now :" + ac2.Balance);
+            //User u2 = new User("ahmed khaled", "ahmed@gmail.com", "01226414024");
+            //BankAccount ac2 = new CheckingAccount(u2.Id.ToString());
+            //Console.WriteLine("balance : " + ac2.Balance);
+            //ac2.Deposit(1000);
+            //Console.WriteLine("balance now :" + ac2.Balance);
 
-            Console.WriteLine(ac2.Withdraw(1000));
-            Console.WriteLine("balance now :"+ac2.Balance);
+            //Console.WriteLine(ac2.Withdraw(1000));
+            //Console.WriteLine("balance now :"+ac2.Balance);
 
-            Console.WriteLine(ac2.Withdraw(100));
-            Console.WriteLine("balance now :"+ac2.Balance);
+            //Console.WriteLine(ac2.Withdraw(100));
+            //Console.WriteLine("balance now :"+ac2.Balance);
+
+            #endregion
+            #region Test Transfer
+
+            BankManager manager = new BankManager();
+            User u1 = new User("Abdallah Nasrat ", "hasdas@gmail.com", "01226414024");
+            User u2 = new User("Youssef Nasrat ", "hasdas@gmail.com", "01226414024");
+
+            var acc1 = manager.OpenCheckingAccount(u1.Id.ToString());
+            var acc2 = manager.OpenCheckingAccount(u2.Id.ToString());
+
+            bool isSuccess = manager.Transfer(acc1.AccountNumber, acc2.AccountNumber, 5000);
+            Console.WriteLine(isSuccess);
+            acc1.Deposit(5000);
+            Console.WriteLine("after add 5000 to acc1 :");
+             isSuccess = manager.Transfer(acc1.AccountNumber, acc2.AccountNumber, 5000);
+            Console.WriteLine(isSuccess);
+
+
+
+
 
             #endregion
         }

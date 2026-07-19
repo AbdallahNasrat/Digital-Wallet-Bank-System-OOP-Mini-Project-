@@ -55,5 +55,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             PhoneNumber = phoneNumber;
         }
 
+
+
     }
 }

@@ -17,6 +17,9 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
 
             #region test deposit & withdraw
+
+            //Saving Account 
+
             //User u1 = new User("abdallah nasrat","abdallah@gmail.com","01226414024");
             //BankAccount account = new SavingAccount(u1.Id.ToString());
             //Console.WriteLine("balance : " + account.Balance);
@@ -25,6 +28,21 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
             //Console.WriteLine(account.Withdraw(1000));
             //Console.WriteLine("balance now :"+account.Balance);
+
+            //Checking Account
+
+            User u2 = new User("ahmed khaled", "ahmed@gmail.com", "01226414024");
+            BankAccount ac2 = new CheckingAccount(u2.Id.ToString());
+            Console.WriteLine("balance : " + ac2.Balance);
+            ac2.Deposit(1000);
+            Console.WriteLine("balance now :" + ac2.Balance);
+
+            Console.WriteLine(ac2.Withdraw(1000));
+            Console.WriteLine("balance now :"+ac2.Balance);
+
+            Console.WriteLine(ac2.Withdraw(100));
+            Console.WriteLine("balance now :"+ac2.Balance);
+
             #endregion
         }
 

@@ -41,6 +41,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             Balance += value;
             Transaction transaction = new Transaction(amount: value
                 ,date: DateTime.UtcNow, type: TransactionType.deposit);
+            MyTransactions.Add(transaction);
                 
             return true;
         }

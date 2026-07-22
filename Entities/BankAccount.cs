@@ -40,7 +40,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
                 throw new Exception("Please Enter value greater than 0 ");
             Balance += value;
             Transaction transaction = new Transaction(amount: value
-                ,date: DateTime.UtcNow, type: TransactionType.deposit);
+                ,date: DateTime.UtcNow, type: TransactionType.deposit ,msg: $"An amount of: {value}$ was deposited");
             MyTransactions.Add(transaction);
                 
             return true;

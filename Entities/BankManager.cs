@@ -44,8 +44,10 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
                 acc1.Balance -= amount;
                 acc2.Balance += amount;
 
-                Transaction t1 = new Transaction(amount, DateTime.Now, TransactionType.Transfer);//for sender
-                Transaction t2 = new Transaction(amount, DateTime.Now, TransactionType.Transfer);//for receiver
+                Transaction t1 = new Transaction(amount, DateTime.Now, TransactionType.Transfer , $"The transfer process is complete , To : {receiver} , Value = {amount}");//for sender
+                Transaction t2 = new Transaction(amount, DateTime.Now, TransactionType.Transfer, $"The transfer process is complete , From : {sender} , Value = {amount}");//for receiver
+                acc1.MyTransactions.Add( t1 );
+                acc2.MyTransactions.Add( t2 );
                 return true;
             }
             catch (Exception e) {

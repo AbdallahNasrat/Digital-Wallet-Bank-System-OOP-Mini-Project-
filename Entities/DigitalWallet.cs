@@ -8,9 +8,33 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public class DigitalWallet
     {
-        public int WalletId { get; set; }
-        public int OwnerId { get; set; }
+        public string WalletId { get; private init; }
+        public string OwnerId { get; private init; }
         public double Balance { get; set; }
-        public int LinkedBankAccountId { get; set; }
+        private string _linkedBankAccountId;
+        public string LinkedBankAccountId {
+            get { return _linkedBankAccountId; }
+            set {
+                if (string.IsNullOrEmpty(_linkedBankAccountId))
+                    _linkedBankAccountId = value;
+                else {
+                    throw new Exception("Can not link wallet by another Account");
+                }
+            }
+        }
+        
+
+        public DigitalWallet(string ownerId)
+        {
+            OwnerId = ownerId;
+            WalletId = GetUniqueWalletNumber();
+        }
+        private string GetUniqueWalletNumber()
+        {
+            string datePart = DateTime.UtcNow.ToString("yyMMdd");
+            string randomPart = Random.Shared.Next(1000, 9999).ToString();
+            return datePart + randomPart;
+
+        }
     }
 }

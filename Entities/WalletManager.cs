@@ -8,6 +8,11 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public class WalletManager
     {
+        private BankManager _bankManager;
+        public WalletManager(BankManager bankManager)
+        {           
+            _bankManager = bankManager;
+        }
         private List<DigitalWallet> _wallets = new List<DigitalWallet>();
         public DigitalWallet CreateWallet(string ownerId) {
             DigitalWallet wallet = new DigitalWallet(ownerId);
@@ -28,9 +33,29 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             wallet.LinkedBankAccountId = bankAccId;
             return true;
         }
+        public bool TopUpWallet(string walletId, double amount) {
+            DigitalWallet wallet = _wallets.FirstOrDefault(d => d.WalletId == walletId);
+            if (wallet == null) {
+                return false;
+            }
+            if (string.IsNullOrEmpty(wallet.LinkedBankAccountId)) {
+                return false;
+            }
 
-        }
+            BankAccount acc = _bankManager.GetAccount(wallet.LinkedBankAccountId);
+            if (acc == null) { 
+                return false;
+            }
+            if (acc.Withdraw(amount)) {
+                wallet.AddFunds(amount);
+                return true;
+            }
+            return false;
 
+        }   
 
     }
+
+
+}
 

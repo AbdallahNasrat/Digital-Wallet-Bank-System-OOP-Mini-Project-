@@ -36,5 +36,13 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             return datePart + randomPart;
 
         }
+        public bool AddFunds(double amount) {
+            if (amount <= 0)
+                return false;
+            else {
+                Balance += amount;
+                return true;
+            }
+        }
     }
 }

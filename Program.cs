@@ -86,6 +86,33 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
             //else
             //    Console.WriteLine("link is not done ");
             #endregion
+            #region test TopUPWallet
+
+            BankManager manager = new BankManager();
+            WalletManager walletManager = new WalletManager(manager);
+            
+            User u1 = new User("Abdallah Nasrat ", "hasdas@gmail.com", "01226414024");
+            var acc1 = manager.OpenCheckingAccount(u1.Id.ToString());
+            DigitalWallet wallet = walletManager.CreateWallet(u1.Id.ToString());
+            walletManager.LinkWalletToAccountBank(wallet.WalletId, acc1.AccountNumber, manager);
+            acc1.Deposit(500);
+            Console.WriteLine($"acc1 balance = {acc1.Balance}");
+
+            bool isSuccess =walletManager.TopUpWallet(wallet.WalletId, 400);
+            if (isSuccess)
+            {
+                Console.WriteLine($"acc1 balance after TopUPWallet {acc1.Balance}");
+                Console.WriteLine($"wallet after addfunds = {wallet.Balance}");
+
+            }
+            else {
+                Console.WriteLine("the process is not complete");
+            }
+            walletManager.TopUpWallet(wallet.WalletId, 200);
+            Console.WriteLine($"acc1 balance after TopUPWallet {acc1.Balance}");
+            Console.WriteLine($"wallet after addfunds = {wallet.Balance}");
+
+            #endregion
         }
 
 

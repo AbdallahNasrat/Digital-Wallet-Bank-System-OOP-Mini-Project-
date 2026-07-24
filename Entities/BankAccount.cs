@@ -9,7 +9,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
 {
     public abstract class BankAccount
     {
-        protected BankAccount(string ownerId)
+        protected BankAccount(string ownerId )
         {
             AccountNumber = GetUniqueAccountNumber();
             OwnerId = ownerId;
@@ -26,7 +26,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         
         public string OwnerId { get; init; }
 
-        public List<Transaction> MyTransactions { get; set; }
+        public List<Transaction> MyTransactions { get; private set; }
 
         private string GetUniqueAccountNumber() {
             string datePart = DateTime.UtcNow.ToString("yyMMdd");
@@ -40,13 +40,24 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
                 throw new Exception("Please Enter value greater than 0 ");
             Balance += value;
             Transaction transaction = new Transaction(amount: value
-                ,date: DateTime.UtcNow, type: TransactionType.deposit);
+                ,date: DateTime.UtcNow, type: TransactionType.deposit ,msg: $"An amount of: {value}$ was deposited");
+            MyTransactions.Add(transaction);
                 
             return true;
         }
 
         public abstract bool Withdraw(double value);
-        
+
+        public double GetBalance() {
+            return Balance;
+        }
+
+        public List<Transaction> GetTransactionHistory() {
+            return MyTransactions;
+        }
+
+
+
 
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Wallet___Bank_System_OOP_Mini_Project__.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             if (Balance >= value + fee)
             {
                 Balance -= value + fee;
+                Transaction t = new Transaction(value+fee, DateTime.Now, TransactionType.Withdraw, $"The withdrawal process is complete , value = {value} ");
+                MyTransactions.Add(t);
                 return true;
 
             }

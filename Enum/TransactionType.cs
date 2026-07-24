@@ -9,7 +9,8 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Enum
     public enum TransactionType
     {
         deposit,
-        Withdraw
+        Withdraw,
+        Transfer
 
     }
 }

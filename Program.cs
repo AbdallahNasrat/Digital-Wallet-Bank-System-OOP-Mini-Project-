@@ -88,29 +88,56 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
             #endregion
             #region test TopUPWallet
 
-            BankManager manager = new BankManager();
-            WalletManager walletManager = new WalletManager(manager);
-            
-            User u1 = new User("Abdallah Nasrat ", "hasdas@gmail.com", "01226414024");
-            var acc1 = manager.OpenCheckingAccount(u1.Id.ToString());
+            //BankManager manager = new BankManager();
+            //WalletManager walletManager = new WalletManager(manager);
+
+            //User u1 = new User("Abdallah Nasrat ", "hasdas@gmail.com", "01226414024");
+            //var acc1 = manager.OpenCheckingAccount(u1.Id.ToString());
+            //DigitalWallet wallet = walletManager.CreateWallet(u1.Id.ToString());
+            //walletManager.LinkWalletToAccountBank(wallet.WalletId, acc1.AccountNumber, manager);
+            //acc1.Deposit(500);
+            //Console.WriteLine($"acc1 balance = {acc1.Balance}");
+
+            //bool isSuccess =walletManager.TopUpWallet(wallet.WalletId, 400);
+            //if (isSuccess)
+            //{
+            //    Console.WriteLine($"acc1 balance after TopUPWallet {acc1.Balance}");
+            //    Console.WriteLine($"wallet after addfunds = {wallet.Balance}");
+
+            //}
+            //else {
+            //    Console.WriteLine("the process is not complete");
+            //}
+            //walletManager.TopUpWallet(wallet.WalletId, 200);
+            //Console.WriteLine($"acc1 balance after TopUPWallet {acc1.Balance}");
+            //Console.WriteLine($"wallet after addfunds = {wallet.Balance}");
+
+            #endregion
+            #region test Transaction 
+            User u1 = new User("Abdallah Nasrat ","Abdallah@gmail.com","01226414024");
+            User u2 = new User("Abdallah 2 ","Abdallah2@gmail.com","01226414024");
+            BankManager bankManager = new BankManager();
+            BankAccount abdallahAcc = bankManager.OpenSavingAccount(u1.Id.ToString());
+            BankAccount abdallahAcc2 = bankManager.OpenSavingAccount(u2.Id.ToString());
+            abdallahAcc.Deposit(100);
+            abdallahAcc.Deposit(200);
+            abdallahAcc.Withdraw(20);
+            bankManager.Transfer(abdallahAcc.AccountNumber, abdallahAcc2.AccountNumber, 50);
+            var myTransaction = abdallahAcc.GetTransactionHistory();
+            foreach (Transaction t in myTransaction) {
+                Console.WriteLine($"{t.Id}  , {t.Amount}   , {t.Date}   , {t.Type}    , {t.Message}");
+            }
+            Console.WriteLine("--------------------------");
+            WalletManager walletManager = new WalletManager(bankManager);
             DigitalWallet wallet = walletManager.CreateWallet(u1.Id.ToString());
-            walletManager.LinkWalletToAccountBank(wallet.WalletId, acc1.AccountNumber, manager);
-            acc1.Deposit(500);
-            Console.WriteLine($"acc1 balance = {acc1.Balance}");
-
-            bool isSuccess =walletManager.TopUpWallet(wallet.WalletId, 400);
-            if (isSuccess)
+            wallet.AddFunds(100);
+            var trans = wallet.MyTransaction;
+            foreach (Transaction t in trans)
             {
-                Console.WriteLine($"acc1 balance after TopUPWallet {acc1.Balance}");
-                Console.WriteLine($"wallet after addfunds = {wallet.Balance}");
+                Console.WriteLine($"{t.Id}  , {t.Amount}   , {t.Date}   , {t.Type}    , {t.Message}");
+            }
 
-            }
-            else {
-                Console.WriteLine("the process is not complete");
-            }
-            walletManager.TopUpWallet(wallet.WalletId, 200);
-            Console.WriteLine($"acc1 balance after TopUPWallet {acc1.Balance}");
-            Console.WriteLine($"wallet after addfunds = {wallet.Balance}");
+
 
             #endregion
         }

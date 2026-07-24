@@ -26,7 +26,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         
         public string OwnerId { get; init; }
 
-        public List<Transaction> MyTransactions { get; set; }
+        public List<Transaction> MyTransactions { get; private set; }
 
         private string GetUniqueAccountNumber() {
             string datePart = DateTime.UtcNow.ToString("yyMMdd");
@@ -52,8 +52,12 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             return Balance;
         }
 
-        
-        
+        public List<Transaction> GetTransactionHistory() {
+            return MyTransactions;
+        }
+
+
+
 
 
     }

@@ -114,32 +114,128 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
             #endregion
             #region test Transaction 
-            User u1 = new User("Abdallah Nasrat ","Abdallah@gmail.com","01226414024");
-            User u2 = new User("Abdallah 2 ","Abdallah2@gmail.com","01226414024");
-            BankManager bankManager = new BankManager();
-            BankAccount abdallahAcc = bankManager.OpenSavingAccount(u1.Id.ToString());
-            BankAccount abdallahAcc2 = bankManager.OpenSavingAccount(u2.Id.ToString());
-            abdallahAcc.Deposit(100);
-            abdallahAcc.Deposit(200);
-            abdallahAcc.Withdraw(20);
-            bankManager.Transfer(abdallahAcc.AccountNumber, abdallahAcc2.AccountNumber, 50);
-            var myTransaction = abdallahAcc.GetTransactionHistory();
-            foreach (Transaction t in myTransaction) {
-                Console.WriteLine($"{t.Id}  , {t.Amount}   , {t.Date}   , {t.Type}    , {t.Message}");
-            }
-            Console.WriteLine("--------------------------");
-            WalletManager walletManager = new WalletManager(bankManager);
-            DigitalWallet wallet = walletManager.CreateWallet(u1.Id.ToString());
-            wallet.AddFunds(100);
-            var trans = wallet.MyTransaction;
-            foreach (Transaction t in trans)
-            {
-                Console.WriteLine($"{t.Id}  , {t.Amount}   , {t.Date}   , {t.Type}    , {t.Message}");
-            }
+            //User u1 = new User("Abdallah Nasrat ","Abdallah@gmail.com","01226414024");
+            //User u2 = new User("Abdallah 2 ","Abdallah2@gmail.com","01226414024");
+            //BankManager bankManager = new BankManager();
+            //BankAccount abdallahAcc = bankManager.OpenSavingAccount(u1.Id.ToString());
+            //BankAccount abdallahAcc2 = bankManager.OpenSavingAccount(u2.Id.ToString());
+            //abdallahAcc.Deposit(100);
+            //abdallahAcc.Deposit(200);
+            //abdallahAcc.Withdraw(20);
+            //bankManager.Transfer(abdallahAcc.AccountNumber, abdallahAcc2.AccountNumber, 50);
+            //var myTransaction = abdallahAcc.GetTransactionHistory();
+            //foreach (Transaction t in myTransaction) {
+            //    Console.WriteLine($"{t.Id}  , {t.Amount}   , {t.Date}   , {t.Type}    , {t.Message}");
+            //}
+            //Console.WriteLine("--------------------------");
+            //WalletManager walletManager = new WalletManager(bankManager);
+            //DigitalWallet wallet = walletManager.CreateWallet(u1.Id.ToString());
+            //wallet.AddFunds(100);
+            //var trans = wallet.MyTransaction;
+            //foreach (Transaction t in trans)
+            //{
+            //    Console.WriteLine($"{t.Id}  , {t.Amount}   , {t.Date}   , {t.Type}    , {t.Message}");
+            //}
+
+
 
 
 
             #endregion
+
+            ///////////////////////////////////////////// User Interface ////////////////////////////
+
+
+            Console.WriteLine(" 1-Create user");
+            Console.WriteLine(" 2-Open Bank Account");
+            Console.WriteLine(" 3-Deposit");
+            Console.WriteLine(" 4-Withdraw");
+            Console.WriteLine(" 5-Transfer to bank account");
+            Console.WriteLine(" 6-Transfer to Digital Wallet");
+            Console.WriteLine(" 7-Open Digital Wallet");
+            Console.WriteLine(" 8-MyBalance - Bank");
+            Console.WriteLine(" 9-MyBalance - Wallet");
+            Console.WriteLine(" 10-Show My Information");
+            Console.WriteLine(" 11-Show My Transaction");
+
+            bool flag = int.TryParse(Console.ReadLine(), out int value);
+            if (flag) {
+                switch (value) {
+                    case 1: {
+                            Console.Write("Enter  fullName : ");
+                            string fullName = Console.ReadLine();
+                            Console.Write("Enter  phone number : ");
+                            string phoneNumber = Console.ReadLine();
+                            Console.Write("Enter  email : ");
+                            string email = Console.ReadLine();
+
+                            User u = new User(fullName, email, phoneNumber);
+                            if (u is not null) {
+                                Console.WriteLine("The user account was successfully created");
+                            }
+                            break;
+                            
+                            
+                    }
+                    case 2: {
+
+                            break;
+                        
+                        }
+                    case 3: {
+
+                            break;
+                        
+                        }
+                    case 4: {
+
+                            break;
+                        
+                        }
+                    case 5: {
+
+                            break;
+                        
+                        }
+                    case 6: {
+
+                            break;
+                        
+                        }
+                    case 7: {
+
+                            break;
+                        
+                        }
+                    case 8: {
+
+                            break;
+                        
+                        }
+                    case 9: {
+
+                            break;
+                        
+                        }
+                    case 10: {
+
+                            break;
+                        
+                        }
+                    case 11: {
+
+                            break;
+                        
+                        }
+                }
+            }
+            else {
+                Console.WriteLine("Enter valid Digit");
+                    }
+
+
+
+
         }
 
 

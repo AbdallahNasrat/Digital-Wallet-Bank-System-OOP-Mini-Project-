@@ -171,13 +171,14 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             User u = new User(fullName, email, phoneNumber);
                             if (u is not null) {
-                                Console.WriteLine("The user account was successfully created");
+                                Console.WriteLine($"The user account was successfully created, with owner Id = {u.Id}");
                             }
                             break;
                             
                             
                     }
                     case 2: {
+                            Console.WriteLine();
 
                             break;
                         

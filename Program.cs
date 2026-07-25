@@ -178,9 +178,29 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
                             
                     }
                     case 2: {
-                            Console.WriteLine();
+                            Console.Write("Enter Owner Id : ");
+                            string ownerId = Console.ReadLine();
 
-                            break;
+                            Console.WriteLine("1- Saving Account , 2- Checking Account");
+                            flag = int.TryParse(Console.ReadLine(), out  value);
+                            if (flag) {
+                                BankAccount acc1;
+                                if (value == 1) {
+                                     acc1 = new SavingAccount(ownerId);
+                                }
+                                else {
+                                     acc1 = new CheckingAccount(ownerId);
+                                }
+
+                                if (acc1 is not null) {
+                                    Console.WriteLine($"The bank account was successfully created , with id = {acc1.AccountNumber}");
+                                }
+                            }
+                            else {
+                                Console.WriteLine("Enter Valid Value");
+                            }
+
+                                break;
                         
                         }
                     case 3: {

@@ -1,4 +1,5 @@
 ﻿using Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities;
+using System.Threading.Channels;
 
 namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 {
@@ -144,121 +145,167 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
             #endregion
 
             ///////////////////////////////////////////// User Interface ////////////////////////////
+            BankManager manager = new BankManager();
+
+            char stop = 't';
+            while (true) {
+                Console.WriteLine(" 1-Create user");
+                Console.WriteLine(" 2-Open Bank Account");
+                Console.WriteLine(" 3-Deposit");
+                Console.WriteLine(" 4-Withdraw");
+                Console.WriteLine(" 5-Transfer to bank account");
+                Console.WriteLine(" 6-Transfer to Digital Wallet");
+                Console.WriteLine(" 7-Open Digital Wallet");
+                Console.WriteLine(" 8-MyBalance - Bank");
+                Console.WriteLine(" 9-MyBalance - Wallet");
+                Console.WriteLine(" 10-Show My Information");
+                Console.WriteLine(" 11-Show My Transaction");
+
+                bool flag = int.TryParse(Console.ReadLine(), out int value);
+                if (flag) {
+                    switch (value) {
+                        case 1: {
+                                Console.Write("Enter  fullName : ");
+                                string fullName = Console.ReadLine();
+                                Console.Write("Enter  phone number : ");
+                                string phoneNumber = Console.ReadLine();
+                                Console.Write("Enter  email : ");
+                                string email = Console.ReadLine();
+
+                                User u = new User(fullName, email, phoneNumber);
+                                if (u is not null) {
+                                    Console.WriteLine($"The user account was successfully created, with owner Id = {u.Id}");
+                                }
+                                break;
 
 
-            Console.WriteLine(" 1-Create user");
-            Console.WriteLine(" 2-Open Bank Account");
-            Console.WriteLine(" 3-Deposit");
-            Console.WriteLine(" 4-Withdraw");
-            Console.WriteLine(" 5-Transfer to bank account");
-            Console.WriteLine(" 6-Transfer to Digital Wallet");
-            Console.WriteLine(" 7-Open Digital Wallet");
-            Console.WriteLine(" 8-MyBalance - Bank");
-            Console.WriteLine(" 9-MyBalance - Wallet");
-            Console.WriteLine(" 10-Show My Information");
-            Console.WriteLine(" 11-Show My Transaction");
-
-            bool flag = int.TryParse(Console.ReadLine(), out int value);
-            if (flag) {
-                switch (value) {
-                    case 1: {
-                            Console.Write("Enter  fullName : ");
-                            string fullName = Console.ReadLine();
-                            Console.Write("Enter  phone number : ");
-                            string phoneNumber = Console.ReadLine();
-                            Console.Write("Enter  email : ");
-                            string email = Console.ReadLine();
-
-                            User u = new User(fullName, email, phoneNumber);
-                            if (u is not null) {
-                                Console.WriteLine($"The user account was successfully created, with owner Id = {u.Id}");
                             }
-                            break;
-                            
-                            
-                    }
-                    case 2: {
-                            Console.Write("Enter Owner Id : ");
-                            string ownerId = Console.ReadLine();
+                        case 2: {
+                                Console.Write("Enter Owner Id : ");
+                                string ownerId = Console.ReadLine();
 
-                            Console.WriteLine("1- Saving Account , 2- Checking Account");
-                            flag = int.TryParse(Console.ReadLine(), out  value);
-                            if (flag) {
-                                BankAccount acc1;
-                                if (value == 1) {
-                                     acc1 = new SavingAccount(ownerId);
+                                Console.WriteLine("1- Saving Account , 2- Checking Account");
+                                flag = int.TryParse(Console.ReadLine(), out value);
+                                if (flag) {
+                                    BankAccount acc1;
+                                    if (value == 1) {
+                                        acc1 = manager.OpenSavingAccount(ownerId);
+                                    }
+                                    else {
+                                        acc1 = manager.OpenCheckingAccount(ownerId);
+                                    }
+
+                                    if (acc1 is not null) {
+                                        Console.WriteLine($"The bank account was successfully created , with id = {acc1.AccountNumber}");
+                                    }
                                 }
                                 else {
-                                     acc1 = new CheckingAccount(ownerId);
+                                    Console.WriteLine("Enter Valid Value");
                                 }
-
-                                if (acc1 is not null) {
-                                    Console.WriteLine($"The bank account was successfully created , with id = {acc1.AccountNumber}");
-                                }
-                            }
-                            else {
-                                Console.WriteLine("Enter Valid Value");
-                            }
 
                                 break;
-                        
-                        }
-                    case 3: {
 
-                            break;
-                        
-                        }
-                    case 4: {
+                            }
+                        case 3: {
+                                Console.Write("Enter Account Number : ");
+                                string senderAcc = Console.ReadLine();
 
-                            break;
-                        
-                        }
-                    case 5: {
+                                var acc = manager.GetAccount(senderAcc);
+                                if (acc is null)
+                                {
+                                    Console.WriteLine("The account number is wrong or doesn't exist");
+                                }
+                                else {
+                                    Console.Write("Enter value : ");
+                                    flag = double.TryParse(Console.ReadLine(), out double amount);
+                                    if (flag == false)
+                                    {
+                                        Console.WriteLine("Enter a valid value.");
+                                    }
+                                    else {
+                                        bool isSuccess = acc.Deposit(amount);
+                                        if (!isSuccess) {
+                                            Console.WriteLine("The process didn’t complete");
+                                        }
+                                        else {
+                                            Console.WriteLine("the process is complete");
+                                        }
+                                    }
 
-                            break;
-                        
-                        }
-                    case 6: {
 
-                            break;
-                        
-                        }
-                    case 7: {
+                                }
 
-                            break;
-                        
-                        }
-                    case 8: {
 
-                            break;
-                        
-                        }
-                    case 9: {
 
-                            break;
-                        
-                        }
-                    case 10: {
+                                break;
 
-                            break;
-                        
-                        }
-                    case 11: {
+                            }
+                        case 4: {
 
-                            break;
-                        
-                        }
-                }
-            }
-            else {
-                Console.WriteLine("Enter valid Digit");
+                                break;
+
+                            }
+                        case 5: {
+
+                                break;
+
+                            }
+                        case 6: {
+
+                                break;
+
+                            }
+                        case 7: {
+
+                                break;
+
+                            }
+                        case 8: {
+
+                                break;
+
+                            }
+                        case 9: {
+
+                                break;
+
+                            }
+                        case 10: {
+
+                                break;
+
+                            }
+                        case 11: {
+
+                                break;
+
+                            }
                     }
+                }
+                else {
+                    Console.WriteLine("Enter valid Digit");
+                }
 
 
+                Console.Write("to continue press t, to exit press another character : ");
+                bool toContinue = char.TryParse(Console.ReadLine(), out stop);
+                if (toContinue == false) {
+                    Console.WriteLine("You entered a wrong value");
+                }
+                else
+                {
+                    if (stop == 't' || stop == 'T')
+                        continue;
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                
+            }
 
 
         }
-
-
     }
 }

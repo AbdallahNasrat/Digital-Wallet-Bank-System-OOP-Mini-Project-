@@ -1,4 +1,5 @@
 ﻿using Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities;
+using System.Diagnostics.Metrics;
 using System.Threading.Channels;
 
 namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
@@ -220,7 +221,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
                                     flag = double.TryParse(Console.ReadLine(), out double amount);
                                     if (flag == false)
                                     {
-                                        Console.WriteLine("Enter a valid value.");
+                                        Console.WriteLine("InValid Input");
                                     }
                                     else {
                                         bool isSuccess = acc.Deposit(amount);
@@ -241,8 +242,35 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             }
                         case 4: {
+                                Console.Write("Enter account number : ");
+                                string acc = Console.ReadLine();
+                                BankAccount account  = manager.GetAccount(acc);
+                                if (account is null)
+                                {
+                                    Console.WriteLine("The account number is wrong or doesn't exist");
+                                }
+                                else {
+                                    Console.Write("Enter value: ");
+                                    flag = double.TryParse(Console.ReadLine(), out double amount);
+                                    if (flag)
+                                    {
+                                        bool isSuccess = account.Withdraw(amount);
+                                        if (isSuccess)
+                                        {
+                                            Console.WriteLine("the process is complete");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("The process didn’t complete");
+                                        }
 
-                                break;
+                                    }
+                                    else {
+                                        Console.WriteLine("InValid Input");
+                                    }
+                                }
+
+                                    break;
 
                             }
                         case 5: {

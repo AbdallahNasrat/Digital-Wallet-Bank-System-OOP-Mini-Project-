@@ -261,12 +261,13 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
                                         }
                                         else
                                         {
-                                            Console.WriteLine("The process didn’t complete");
+                                            Console.WriteLine("The process was not completed");
                                         }
 
                                     }
                                     else {
                                         Console.WriteLine("InValid Input");
+                                        break;
                                     }
                                 }
 
@@ -274,8 +275,36 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             }
                         case 5: {
+                                Console.Write("Enter sender Account Number: ");
+                                string accNum1 = Console.ReadLine();
+                                Console.Write("Enter receiver Account Number: ");
+                                string accNum2 = Console.ReadLine();
+                                var sender = manager.GetAccount(accNum1);
+                                var receiver = manager.GetAccount(accNum2);
+                                if (sender is null) {
+                                    Console.WriteLine("The sender account number is wrong or doesn't exist");
+                                    break;
+                                }
+                                if (receiver is null) {
+                                    Console.WriteLine("The receiver account number is wrong or doesn't exist");
+                                    break;
 
-                                break;
+                                }
+                                Console.Write("Enter value: ");
+                                flag = double.TryParse(Console.ReadLine(), out double amount);
+                                if (!flag) {
+                                    Console.WriteLine("InValid Input");
+                                    break ;
+                                }
+                                bool isSuccess = manager.Transfer(accNum1, accNum2, amount);
+                                if (isSuccess)
+                                {
+                                    Console.WriteLine("the process is complete");
+                                }
+                                else {
+                                    Console.WriteLine("Insufficient balance");
+                                }
+                                    break;
 
                             }
                         case 6: {

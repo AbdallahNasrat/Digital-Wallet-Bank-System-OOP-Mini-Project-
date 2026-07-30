@@ -16,6 +16,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
         private List<DigitalWallet> _wallets = new List<DigitalWallet>();
         public DigitalWallet CreateWallet(string ownerId) {
             DigitalWallet wallet = new DigitalWallet(ownerId);
+            
             _wallets.Add(wallet);
             return wallet;
 

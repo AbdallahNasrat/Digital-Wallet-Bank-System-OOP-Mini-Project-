@@ -147,6 +147,7 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
             ///////////////////////////////////////////// User Interface ////////////////////////////
             BankManager manager = new BankManager();
+            WalletManager walletManager = new WalletManager(manager);
 
             char stop = 't';
             while (true) {
@@ -313,8 +314,20 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             }
                         case 7: {
+                                Console.Write("Enter owner Id: ");
+                                string ownerId = Console.ReadLine(); // need to check its valid 
+                                DigitalWallet digitalWallet = walletManager.CreateWallet(ownerId);
+                                if (digitalWallet is not null)
+                                {
+                                    Console.WriteLine($"the digital wallet was created with id : {digitalWallet.WalletId}");
+                                }
+                                else {
+                                    Console.WriteLine("The Process was not completed");
+                                }
 
-                                break;
+
+
+                                    break;
 
                             }
                         case 8: {

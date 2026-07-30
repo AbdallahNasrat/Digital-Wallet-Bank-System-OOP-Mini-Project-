@@ -14,11 +14,14 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__.Entities
             _bankManager = bankManager;
         }
         private List<DigitalWallet> _wallets = new List<DigitalWallet>();
-        public DigitalWallet CreateWallet(string ownerId) {
+        public DigitalWallet CreateWallet(string ownerId,string bankAccount) {
             DigitalWallet wallet = new DigitalWallet(ownerId);
-            
             _wallets.Add(wallet);
-            return wallet;
+            bool link = LinkWalletToAccountBank(wallet.WalletId, bankAccount, _bankManager);
+            if (link) {
+                return wallet;
+            }
+            return null;
 
         }
         public bool LinkWalletToAccountBank(string walletId, string bankAccId , BankManager bankManager) {

@@ -309,14 +309,35 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             }
                         case 6: {
-
-                                break;
-
+                                Console.Write("Enter Wallet Number: ");
+                                string walletNumber = Console.ReadLine();
+                                Console.WriteLine("Enter the amount: ");
+                                flag = double.TryParse(Console.ReadLine(), out double amount);
+                                if (!flag) {
+                                    Console.WriteLine("InValid Input");
+                                    break;
+                                }
+                                
+                                bool isSuccess = walletManager.TopUpWallet(walletNumber, amount);
+                                if (isSuccess) {
+                                    Console.WriteLine("the process was complete");
+                                }
+                                else
+                                    Console.WriteLine("the process was not complete");
+                                    break;
                             }
                         case 7: {
                                 Console.Write("Enter owner Id: ");
                                 string ownerId = Console.ReadLine(); // need to check its valid 
-                                DigitalWallet digitalWallet = walletManager.CreateWallet(ownerId);
+                                Console.Write("Enter bank Account Number: ");
+                                string bankAcc = Console.ReadLine();
+
+                                if (manager.GetAccount(bankAcc) is null) {
+                                    Console.WriteLine("Account Number is wrong or not exist");
+                                    break;
+                                }
+
+                                DigitalWallet digitalWallet = walletManager.CreateWallet(ownerId,bankAcc);
                                 if (digitalWallet is not null)
                                 {
                                     Console.WriteLine($"the digital wallet was created with id : {digitalWallet.WalletId}");
@@ -324,8 +345,6 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
                                 else {
                                     Console.WriteLine("The Process was not completed");
                                 }
-
-
 
                                     break;
 

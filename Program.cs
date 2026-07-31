@@ -159,9 +159,9 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
                 Console.WriteLine(" 6-Transfer to Digital Wallet");
                 Console.WriteLine(" 7-Open Digital Wallet");
                 Console.WriteLine(" 8-MyBalance - Bank");
-                Console.WriteLine(" 9-MyBalance - Wallet");
-                Console.WriteLine(" 10-Show My Information");
-                Console.WriteLine(" 11-Show My Transaction");
+                Console.WriteLine(" 9-MyBalance - Wallet  (not yet)");
+                Console.WriteLine(" 10-Show My Information (not yet)");
+                Console.WriteLine(" 11-Show My Transaction (not yet)");
 
                 bool flag = int.TryParse(Console.ReadLine(), out int value);
                 if (flag) {
@@ -362,11 +362,13 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             }
                         case 9: {
+                                Console.WriteLine("not yet");
 
                                 break;
 
                             }
                         case 10: {
+                                
 
                                 break;
 

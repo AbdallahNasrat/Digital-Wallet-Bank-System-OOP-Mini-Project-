@@ -350,7 +350,14 @@ namespace Digital_Wallet___Bank_System_OOP_Mini_Project__
 
                             }
                         case 8: {
-
+                                Console.Write("Enter Bank Account Number: ");
+                                string accNumber =Console.ReadLine();
+                                var account = manager.GetAccount(accNumber);
+                                if (account is null) {
+                                    Console.WriteLine("Account Number is wrong or not exist.");
+                                    break ;
+                                }
+                                Console.WriteLine($"balance: {account.GetBalance()}");
                                 break;
 
                             }
